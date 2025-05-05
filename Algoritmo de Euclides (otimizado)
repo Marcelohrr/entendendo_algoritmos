@@ -1,0 +1,13 @@
+def euclides(a, b):
+    if a > b:
+        a, b = b, a
+    while a != 0:
+        q = b // a
+        r = b - a * q
+        a, b = r, a
+    return b
+
+# Teste
+MDC = euclides(55, 11)
+print(MDC)
+11
