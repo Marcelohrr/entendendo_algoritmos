@@ -1,0 +1,17 @@
+def sauda(nome):
+    print("Olá, " + nome + "!")
+    sauda2(nome)
+    tchau(nome)
+
+def sauda2(nome):
+    print("Como está, " + nome + "?")
+
+def tchau(nome):
+    print("Tchau, " + nome + "!")
+
+sauda("Marcelo")
+
+# Teste
+Olá, Marcelo!
+Como está, Marcelo?
+Tchau, Marcelo!
