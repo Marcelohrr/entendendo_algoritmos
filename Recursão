@@ -1,0 +1,14 @@
+def regressiva(i):
+    print(i)
+    if i == 1:
+        print("Fim!")
+        return
+    else:
+        regressiva(i - 1)
+
+# Teste
+regressiva(3)
+3
+2
+1
+Fim!
