@@ -1,0 +1,9 @@
+def soma(lista):
+    if len(lista) == 0: 
+        return 0
+    else:
+        return lista[0] + soma(lista[1:])
+
+# Teste
+print(soma([-5, 2, 7]))
+4
