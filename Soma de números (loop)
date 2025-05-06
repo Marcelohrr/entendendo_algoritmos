@@ -1,9 +1,0 @@
-def soma(lista):
-    total = 0
-    for x in lista:
-        total += x
-    return total
-
-# Teste
-print(soma([1, 3, 6]))
-10
