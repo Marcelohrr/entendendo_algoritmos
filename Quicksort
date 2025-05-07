@@ -1,0 +1,12 @@
+def quicksort(array):
+    if len(array) < 2:
+        return array
+    else:
+        pivô = array[0]
+        subarray_menor = [i for i in array[1:] if i <= pivô]
+        subarray_maior = [i for i in array[1:] if i > pivô]
+        return quicksort(subarray_menor) + [pivô] + quicksort(subarray_maior)
+
+# Teste
+print(quicksort([-5, 2, 0, -10, 8, 17]))
+[-10, -5, 0, 2, 8, 17]
