@@ -1,0 +1,9 @@
+caderno = dict()
+caderno["maçã"] = 0,67
+caderno["leite"] = 1,49
+
+# Teste
+print(caderno)
+{'maçã': (0, 67), 'leite': (1, 49)}
+print(caderno["maçã"])
+(0, 67)
