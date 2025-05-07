@@ -1,0 +1,26 @@
+votou = {}
+def registrar_votos(nome, voto):
+    if nome in votou:
+        print("Voto de " + nome + " recusado!")
+    else:
+        votou[nome] = voto
+        print("Voto de " + nome + " registrado como " + voto + ".")
+
+def consultar_votos(nome):
+    voto = votou.get(nome)
+    if voto:
+        print(nome + " votou: " + voto + ".")
+    else:
+        print(nome + " ainda não votou.")
+
+# Teste
+registrar_votos("Marcelo", "sim")
+Voto de Marcelo registrado como sim.
+consultar_votos("Adriana")
+Adriana ainda não votou.
+registrar_votos("Adriana", "sim")
+Voto de Adriana registrado como sim.
+registrar_votos("Marcelo", "sim")
+Voto de Marcelo recusado!
+consultar_votos("Adriana")
+Adriana votou: sim.
