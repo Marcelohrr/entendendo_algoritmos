@@ -1,0 +1,10 @@
+lista_telefônica = {}
+lista_telefônica["Polícia Militar"] = 190
+lista_telefônica["SAMU"] = 192
+lista_telefônica["Corpo de Bombeiros"] = 193
+
+# Teste
+print(lista_telefônica)
+{'Polícia Militar': 190, 'SAMU': 192, 'Corpo de Bombeiros': 193}
+print(lista_telefônica["SAMU"])
+192
