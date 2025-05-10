@@ -1,0 +1,42 @@
+from collections import deque
+
+def pesquisa_em_largura(grafo):
+    fila_de_pesquisa = deque()
+    fila_de_pesquisa += grafo["A"]
+    verificados = []
+
+    while fila_de_pesquisa:
+        item = fila_de_pesquisa.popleft()
+        if not item in verificados:
+            if encontrou_M(item):
+                print(item + " encontrado!")
+                print("Verificados: " + str(verificados))
+                return True
+            else:
+                fila_de_pesquisa += grafo[item]
+                verificados.append(item)
+
+    print("Verificados: " + str(verificados))
+    print("Item não encontrado!")
+    return False
+
+# Teste
+def encontrou_M(item):
+    return item == "M"
+
+grafo = {}
+grafo["A"] = ["B", "C", "D"]
+grafo["B"] = ["E", "H"]
+grafo["C"] = ["F"]
+grafo["D"] = ["G"]
+grafo["E"] = ["H"]
+grafo["F"] = ["I"]
+grafo["G"] = ["J"]
+grafo["H"] = ["B", "M"]
+grafo["I"] = []
+grafo["J"] = []
+grafo["M"] = []
+
+pesquisa_em_largura(grafo)
+M encontrado!
+Verificados: ['B', 'C', 'D', 'E', 'H', 'F', 'G']
