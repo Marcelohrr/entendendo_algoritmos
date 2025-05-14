@@ -1,0 +1,47 @@
+def ache_no_custo_mais_baixo(custos): # Função para achar o próximo vértice de menor custo não processado
+    custo_mais_baixo = float("inf") # Inicializa com infinito para garantir que qualquer custo seja menor
+    vértice_custo_mais_baixo = None # Inicializa a variável que guardará o vértice de menor custo
+    for vértice in custos: # Para cada variável vértice em "custos"
+        custo = custos[vértice] # Pega o custo como custo da variável vértice atual
+        if custo < custo_mais_baixo and vértice not in processados: # Se é o menor custo e ainda não foi processado
+            custo_mais_baixo = custo # Atualiza o menor custo encontrado
+            vértice_custo_mais_baixo = vértice # Atualiza o vértice de custo mais baixo
+    return vértice_custo_mais_baixo # Retorna o vértice com o menor custo ainda não processado (ou None se não houver)
+
+def mostra_caminho(pais, destino): # Função para reconstruir o caminho percorrido do início ao fim
+    caminho = [] # Lista para registrar o caminho
+    while destino: # Enquanto "destino" não for None (requer identificar "início" como None em "pais")
+        caminho.insert(0, destino) # Adiciona "destino" na posição 0 da lista "caminho"
+        destino = pais[destino] # Atualiza "destino" para o pai do atual "destino"
+    return caminho # Retorna a lista completa
+
+grafo = {} # Dicionário com dicionários para registrar os vizinhos e seus custos
+grafo["início"] = {"A": 6, "B": 2}
+grafo["A"] = {"fim": 1}
+grafo["B"] = {"A": 3, "fim": 5}
+grafo["fim"] = {}
+
+custos = {"A": 6, "B": 2, "fim": float("inf")} # Dicionário para armazenar os custos mínimos para cada vértice
+
+pais = {"início": None, "A": "início", "B": "início", "fim": None} # Dicionário para registro dos pais de cada vértice
+
+processados = [] # Lista para registro dos vértices já processados
+
+# Fluxo/execução do algoritmo
+vértice = ache_no_custo_mais_baixo(custos) # Define vértice pela função "ache_no_custo_mais_baixo(custos)"
+while vértice is not None:  # Enquanto houver vértices a serem processados................
+    custo = custos[vértice] # Pega em "custos" o custo do vértice atual
+    vizinhos = grafo[vértice] # Pega em "grafo" os vizinhos do vértice atual e seus valores
+    for v in vizinhos.keys():  # Para cada variável v (vértice) nas opções de chaves (vértices) de "vizinhos"
+        novo_custo = custo + vizinhos[v] # Pega o novo custo como custo atual + custo até vizinho v atual
+        if custos[v] > novo_custo: # Se o custo anterior até o vizinho v for maior do que o novo custo
+            custos[v] = novo_custo # Atualiza em "custos" o custo até v
+            pais[v] = vértice # Registra ou atualiza o vértice atual como pai de v
+    processados.append(vértice) # Adiciona o vértice atual na lista "processados", pois não é possível caminho menor para o vértice atual se todas arestas tiverem valores positivos
+    vértice = ache_no_custo_mais_baixo(custos) # Redefine com novo vértice para repetir a execução do algoritmo
+
+# Teste
+print("Menor custo até fim:", custos["fim"]) # Printa o último e menor custo até "fim"
+Menor custo até fim: 6
+print("Caminho:", mostra_caminho(pais, "fim")) # Definindo "destino" como "fim", printa o caminho
+Caminho: ['início', 'B', 'A', 'fim']
