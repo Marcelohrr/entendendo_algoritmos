@@ -1,0 +1,25 @@
+regiões_abranger = set(["centro-oeste", "nordeste", "norte", "sudeste", "sul"])
+
+estações = {}
+estações["estação 1"] = set(["sudeste", "sul"])
+estações["estação 2"] = set(["centro-oeste", "nordeste", "norte"])
+estações["estação 3"] = set(["centro-oeste", "norte"])
+estações["estação 4"] = set(["sudeste"])
+estações["estação 5"] = set(["sul"])
+
+estações_final = []
+
+while regiões_abranger:
+    melhor_estação = None
+    regiões_cobertas = set()
+    for estação, regiões in estações.items():
+        cobertas = regiões_abranger & regiões
+        if len(cobertas) > len(regiões_cobertas):
+            melhor_estação = estação
+            regiões_cobertas = cobertas
+    regiões_abranger -= regiões_cobertas
+    estações_final.append(melhor_estação)
+
+# Teste
+print(estações_final)
+['estação 2', 'estação 1']
